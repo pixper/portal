@@ -1,0 +1,13 @@
+### COMPOSE ###################################################################
+
+COMPOSE_PROJECT_NAME=portal
+
+### CERTBOT ###################################################################
+
+# Email address for important account notifications 
+CERTBOT_EMAIL=
+
+# Domains to create SSL certificates for and watch for renewals (multiple domains supported by separating them with a comma: example1.com,example2.com).
+CERTBOT_DOMAINS=pixper.net
+
+### END #######################################################################

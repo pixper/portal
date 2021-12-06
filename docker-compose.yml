@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+    nginx:
+        build: ./nginx
+        hostname: nginx
+        volumes:
+            - ./nginx/conf.d/:/etc/nginx/conf.d/:rw
+            - letsencrypt-root:/var/www/letsencrypt:ro
+            - letsencrypt-certs:/etc/letsencrypt/:ro
+        ports:
+            - 80/tcp
+            - 443/tcp
+        restart: always
+        networks:
+            - default
+
+    certbot:
+        build: ./certbot
+        hostname: certbot
+        restart: always
+        environment:
+            CERTBOT_EMAIL: ${CERTBOT_EMAIL}
+            CERTBOT_DOMAINS: ${CERTBOT_DOMAINS}
+        networks:
+            - default
+        volumes:
+            - ./nginx/conf.d/:/etc/nginx/conf.d/:rw
+            - letsencrypt-root:/var/www/letsencrypt:rw
+            - letsencrypt-certs:/etc/letsencrypt/:rw
+        depends_on:
+            - nginx
+
+networks:
+    default:
+
+volumes:
+   letsencrypt-root:
+   letsencrypt-certs:
