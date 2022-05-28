@@ -1,4 +1,4 @@
-FROM nginx
+FROM nginx:1.22
 
 RUN apt-get update && \
   apt-get install -y --no-install-recommends apache2-utils inotify-tools \
