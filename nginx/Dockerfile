@@ -1,4 +1,4 @@
-FROM nginx
+FROM nginx:1-bullseye
 
 RUN apt-get update && \
   apt-get install -y --no-install-recommends apache2-utils inotify-tools \
